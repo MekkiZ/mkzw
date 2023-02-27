@@ -1,1 +1,1 @@
-web: gunicorn mkzw.wsgi --log-file -
+web: gunicorn mkzw.wsgi

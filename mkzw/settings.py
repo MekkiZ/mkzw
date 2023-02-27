@@ -11,9 +11,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import os
-import dj_database_url
-import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +24,7 @@ SECRET_KEY = 'django-insecure-0)ids2g9-&)j!h0#=y^=9f7adh58&r3*0ny2iiryffuw61x&+(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -42,8 +39,6 @@ INSTALLED_APPS = [
     'links',
     'authenticate',
     'profil',
-    'whitenoise.runserver_nostatic',
-
 ]
 
 MIDDLEWARE = [
@@ -54,8 +49,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-
 ]
 
 ROOT_URLCONF = 'mkzw.urls'
@@ -84,12 +77,8 @@ WSGI_APPLICATION = 'mkzw.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mkzw',
-        'USER': 'mikez',
-        'PASSWORD': 'PostgresqlMKZW',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -135,8 +124,3 @@ MEDIA_ROOT = 'media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'auth.User'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-django_heroku.settings(locals())
-
